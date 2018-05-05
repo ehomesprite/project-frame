@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "build": "webpack --config build/config.js",
-    "dev": "webpack --mode development"
+    "dev": "webpack-dev-server --config build/config.js"
   },
   "repository": {
     "type": "git",
@@ -32,6 +32,7 @@
     "webpack-cli": "^2.1.2"
   },
   "dependencies": {
-    "lodash": "^4.17.10"
+    "lodash": "^4.17.10",
+    "webpack-dev-server": "^3.1.4"
   }
 }

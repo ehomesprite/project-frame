@@ -1,9 +1,6 @@
-const path = require('path');
+// const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const utils = require('./utils');
-
-const entryPath = './src/views/';
-
 
 module.exports = {
   mode: 'development',
@@ -12,6 +9,13 @@ module.exports = {
     filename: '[name].js',
     path: utils.dir('dist'),
     publicPath: '/',
+  },
+  devtool: '#cheap-eval-source-map',
+  devServer: {
+    contentBase: utils.dir('dist'),
+    port: 8080,
+    allowedHosts: ['cms.ptqy.gitv.tv'],
+    // hot: true,
   },
   resolve: {
     extensions: ['.js', '.css'],
