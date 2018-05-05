@@ -1,24 +1,26 @@
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var CleanWebpackPlugin = require('clean-webpack-plugin');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const utils = require('./utils');
 
-var entryPath = '../src/views/';
+const entryPath = './src/views/';
+
 
 module.exports = {
   mode: 'production',
   entry: {
-    page1: path.resolve(__dirname, entryPath, 'page1/main.js'),
-    // page2: path.resolve(__dirname, entryPath, 'page2/main.js')
+    page1: utils.dir(entryPath, 'page1/main.js'),
+    page2: utils.dir(entryPath, 'page2/main.js')
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, '../dist'),
+    path: utils.dir('dist'),
     // publicPath: 'dist/',
   },
   resolve: {
     extensions: ['.js', '.css'],
     alias: {
-      'utils': path.resolve(__dirname, '../src/utils'),
+      'utils': utils.dir('src/utils'),
     }
   },
   module: {
@@ -40,8 +42,6 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
-    new HtmlWebpackPlugin({
-      title: 'output management'
-    }),
+    ...utils.getHtmlWebpackPlugin(),
   ]
 };
