@@ -1,5 +1,4 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const utils = require('./utils');
 
@@ -7,15 +6,12 @@ const entryPath = './src/views/';
 
 
 module.exports = {
-  mode: 'production',
-  entry: {
-    page1: utils.dir(entryPath, 'page1/main.js'),
-    page2: utils.dir(entryPath, 'page2/main.js')
-  },
+  mode: 'development',
+  entry: utils.getEntries(),
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].js',
     path: utils.dir('dist'),
-    // publicPath: 'dist/',
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.js', '.css'],

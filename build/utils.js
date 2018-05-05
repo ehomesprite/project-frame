@@ -6,16 +6,27 @@ const glob = require('glob');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 utils = {
-  _getFileList() {
-    const files = {};
-    glob.sync(this.dir('./src/views/**/index.html')).map((filename) => {
-      files[filename.split('/').slice(-2)[0]] = filename;
+  _getJsEntryList() {
+    const entries = {};
+    glob.sync(this.dir('./src/views/**/main.js')).map((jsFilePath) => {
+      entries[jsFilePath.split('/').slice(-2)[0]] = jsFilePath;
     });
-    console.log(files);
+    console.log('_getJsEntryList\n', entries);
+    return entries;
+  },
+  getEntries() {
+    return this._getJsEntryList();
+  },
+  _getHtmlFileList() {
+    const files = {};
+    glob.sync(this.dir('./src/views/**/index.html')).map((filePath) => {
+      files[filePath.split('/').slice(-2)[0]] = filePath;
+    });
+    console.log('_getHtmlFileList\n', files);
     return files;
   },
   getHtmlWebpackConf() {
-    const files = this._getFileList();
+    const files = this._getHtmlFileList();
     const confList = [];
     for (let name in files) {
       if (!files.hasOwnProperty(name)) continue;
@@ -43,4 +54,4 @@ utils = {
 module.exports = utils;
 
 // debug area
-// utils._getFileList();
+// utils._getJsEntryList();
