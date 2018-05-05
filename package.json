@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "webpack --config build/config.js",
     "dev": "webpack --mode development"
   },
   "repository": {

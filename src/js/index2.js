@@ -7,3 +7,4 @@ import _ from 'lodash';
 const arr = [];
 
 console.log(_.isArray(arr));
+console.log(2);
