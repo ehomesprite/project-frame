@@ -6,7 +6,7 @@ module.exports = {
   mode: 'development',
   entry: utils.getEntries(),
   output: {
-    filename: '[name].js',
+    filename: 'js/[name].js',
     path: utils.dir('dist'),
     publicPath: '/',
   },
@@ -18,7 +18,7 @@ module.exports = {
     // hot: true,
   },
   resolve: {
-    extensions: ['.js', '.css'],
+    extensions: ['.js', '.css', '.less'],
     alias: {
       'utils': utils.dir('src/utils'),
     }
@@ -31,17 +31,30 @@ module.exports = {
           'style-loader',
           'css-loader'
         ]
+      }, {
+        test: /.less/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'less-loader'
+        ]
       }, { // url-loader
         test: /\.(png|svg|jpg|gif)/,
         loader: 'url-loader',
         options: {
           limit: 4000,
         },
+      }, {
+        test: /\.js/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'
       }
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin('dist', {
+      root: utils.dir(),
+    }),
     ...utils.getHtmlWebpackPlugin(),
   ]
 };

@@ -1,0 +1,13 @@
+{
+  "presets": [
+    ["env", {
+      "loose": true,
+      "targets": {
+        "browsers": ["cover 99.5%"]
+      },
+      "useBuiltIns": true
+    }],
+    "stage-2"
+  ],
+  "plugins": []
+}

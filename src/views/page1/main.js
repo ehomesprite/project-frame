@@ -2,8 +2,9 @@
  * created by zhangzihao on 2018/4/27
  */
 
-import './assets/style/main';
+import 'babel-polyfill';
 import domUtils from 'utils/dom';
+import './assets/style/main';
 
 const body = document.querySelector('body');
 const div = document.createElement('div');
@@ -20,7 +21,7 @@ const f1 = async () => {
     setTimeout(() => {
       console.log('f1');
       resolve();
-    }, 10);
+    }, 1000);
   })
 };
 const f2 = async () => {
@@ -28,7 +29,7 @@ const f2 = async () => {
 };
 
 const f = async () => {
-  f1();
+  await f1();
   console.log('f');
 };
 

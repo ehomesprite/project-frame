@@ -31,7 +31,7 @@ utils = {
     for (let name in files) {
       if (!files.hasOwnProperty(name)) continue;
       const conf = {
-        filename: `${name}.html`,
+        filename: `common/tv/${name}.html`,
         template: files[name],
         chunks: [name],
       };
