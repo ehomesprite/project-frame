@@ -14,7 +14,7 @@ module.exports = {
     path: utils.dir('dist'),
     publicPath: '/',
   },
-  devtool: '#cheap-eval-source-map',
+  devtool: 'cheap-module-source-map',
   devServer: {
     contentBase: utils.dir('dist'),
     port: 8080,
@@ -29,14 +29,7 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.(js|vue)/,
-        exclude: /node_modules/,
-        use: [
-          'vue-loader',
-          'eslint-loader',
-        ],
-      }, { // vue-loader
+      { // vue-loader
         test: /\.vue$/,
         loader: 'vue-loader',
       }, {
