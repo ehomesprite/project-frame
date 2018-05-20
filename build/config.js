@@ -1,5 +1,8 @@
 // const path = require('path');
+const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 const utils = require('./utils');
 
 module.exports = {
@@ -7,6 +10,7 @@ module.exports = {
   entry: utils.getEntries(),
   output: {
     filename: 'js/[name].js',
+    chunkFilename: 'js/[name].chunk.js',
     path: utils.dir('dist'),
     publicPath: '/',
   },
@@ -18,26 +22,25 @@ module.exports = {
     // hot: true,
   },
   resolve: {
-    extensions: ['.js', '.css', '.less'],
+    extensions: ['.js', '.css', '.less', '.vue'],
     alias: {
       'utils': utils.dir('src/utils'),
     }
   },
   module: {
     rules: [
-      { // css-loader
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
+      { // vue-loader
+        test: /\.vue$/,
+        loader: 'vue-loader',
       }, {
         test: /.less/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'less-loader'
-        ]
+        use: ExtractTextWebpackPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            'css-loader',
+            'less-loader',
+          ]
+        }),
       }, { // url-loader
         test: /\.(png|svg|jpg|gif)/,
         loader: 'url-loader',
@@ -56,5 +59,9 @@ module.exports = {
       root: utils.dir(),
     }),
     ...utils.getHtmlWebpackPlugin(),
+    new VueLoaderPlugin(),
+    new ExtractTextWebpackPlugin({
+      filename: 'css/[name].css',
+    }),
   ]
 };
