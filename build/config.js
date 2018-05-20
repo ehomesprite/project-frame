@@ -10,7 +10,7 @@ module.exports = {
   entry: utils.getEntries(),
   output: {
     filename: 'js/[name].js',
-    chunkFilename: 'js/[name].chunk.js',
+    chunkFilename: 'js/[name].js',
     path: utils.dir('dist'),
     publicPath: '/',
   },
@@ -63,5 +63,30 @@ module.exports = {
     new ExtractTextWebpackPlugin({
       filename: 'css/[name].css',
     }),
-  ]
+  ],
+  optimization: {
+    splitChunks: {
+      minChunks: 1,
+      name: true,
+      cacheGroups: {
+        common: {
+          name: 'common',
+          chunks: 'initial',
+          minChunks: 2,
+          // maxInitialRequests: 5, // The default limit is too small to showcase the effect
+          minSize: 0 // This is example is too small to create commons chunks
+        },
+        vendor: {
+          test: /node_modules/,
+          chunks: 'initial',
+          name: 'vendor',
+          priority: 10,
+          enforce: true
+        }
+      }
+    },
+    runtimeChunk: {
+      name: 'manifest',
+    },
+  },
 };

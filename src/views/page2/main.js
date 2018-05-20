@@ -3,6 +3,11 @@
  */
 
 import _ from 'lodash';
+import domUtils from 'utils/dom';
+
+setTimeout(() => {
+  domUtils.addDiv('Add Me In ?');
+}, 1000);
 
 const arr = [];
 

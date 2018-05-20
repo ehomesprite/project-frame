@@ -33,7 +33,7 @@ utils = {
       const conf = {
         filename: `common/tv/${name}.html`,
         template: files[name],
-        chunks: [name],
+        chunks: [name, 'common', 'manifest', 'vendor'],
       };
       confList.push(conf);
     }
