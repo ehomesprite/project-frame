@@ -24,12 +24,19 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.css', '.less', '.vue'],
     alias: {
-      'utils': utils.dir('src/utils'),
-    }
+      utils: utils.dir('src/utils'),
+    },
   },
   module: {
     rules: [
-      { // vue-loader
+      {
+        test: /\.(js|vue)/,
+        exclude: /node_modules/,
+        use: [
+          'vue-loader',
+          'eslint-loader',
+        ],
+      }, { // vue-loader
         test: /\.vue$/,
         loader: 'vue-loader',
       }, {
@@ -39,7 +46,7 @@ module.exports = {
           use: [
             'css-loader',
             'less-loader',
-          ]
+          ],
         }),
       }, { // url-loader
         test: /\.(png|svg|jpg|gif)/,
@@ -50,9 +57,9 @@ module.exports = {
       }, {
         test: /\.js/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
-      }
-    ]
+        loader: 'babel-loader',
+      },
+    ],
   },
   plugins: [
     new CleanWebpackPlugin('dist', {
@@ -64,29 +71,29 @@ module.exports = {
       filename: 'css/[name].css',
     }),
   ],
-  optimization: {
-    splitChunks: {
-      minChunks: 1,
-      name: true,
-      cacheGroups: {
-        common: {
-          name: 'common',
-          chunks: 'initial',
-          minChunks: 2,
-          // maxInitialRequests: 5, // The default limit is too small to showcase the effect
-          minSize: 0 // This is example is too small to create commons chunks
-        },
-        vendor: {
-          test: /node_modules/,
-          chunks: 'initial',
-          name: 'vendor',
-          priority: 10,
-          enforce: true
-        }
-      }
-    },
-    runtimeChunk: {
-      name: 'manifest',
-    },
-  },
+  // optimization: {
+  //   splitChunks: {
+  //     minChunks: 1,
+  //     name: true,
+  //     cacheGroups: {
+  //       common: {
+  //         name: 'common',
+  //         chunks: 'initial',
+  //         minChunks: 2,
+  //         // maxInitialRequests: 5, // The default limit is too small to showcase the effect
+  //         minSize: 0, // This is example is too small to create commons chunks
+  //       },
+  //       vendor: {
+  //         test: /node_modules/,
+  //         chunks: 'initial',
+  //         name: 'vendor',
+  //         priority: 10,
+  //         enforce: true,
+  //       },
+  //     },
+  //   },
+  //   runtimeChunk: {
+  //     name: 'manifest',
+  //   },
+  // },
 };

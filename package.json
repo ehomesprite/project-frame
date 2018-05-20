@@ -27,6 +27,9 @@
     "babel-preset-env": "^1.7.0",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.12.0",
     "file-loader": "^1.1.11",
     "glob": "^7.1.2",
     "html-webpack-plugin": "^3.2.0",
@@ -41,6 +44,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "eslint-loader": "^2.0.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "lodash": "^4.17.10",
     "vue": "^2.5.16",

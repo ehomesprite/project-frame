@@ -16,20 +16,20 @@ setTimeout(() => {
   domUtils.addDiv('Add Me In');
 }, 1000);
 
-const f1 = async () => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      console.log('f1');
-      resolve();
-    }, 1000);
-  })
-};
+const f1 = async () => new Promise((resolve) => {
+  setTimeout(() => {
+    console.log('f1');
+    resolve();
+  }, 1000);
+});
+
 const f2 = async () => {
   console.log('f2');
 };
 
 const f = async () => {
   await f1();
+  f2();
   console.log('f');
 };
 
