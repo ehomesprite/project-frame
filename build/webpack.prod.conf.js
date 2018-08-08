@@ -23,9 +23,7 @@ const prodConf = {
   },
   plugins: [
     new OptimizeCSSPlugin({
-      cssProcessorOptions: {
-        safe: true,
-      },
+      cssProcessor: require('cssnano'),
     }),
   ],
 };

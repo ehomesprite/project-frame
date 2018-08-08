@@ -4,11 +4,12 @@
 const path = require('path');
 const glob = require('glob');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { common: config } = require('./config');
 
-utils = {
+const utils = {
   _getJsEntryList() {
     const entries = {};
-    glob.sync(this.dir('./src/views/**/**/main.js')).map((jsFilePath) => {
+    glob.sync(this.dir(config.jsSourceFilePath)).map((jsFilePath) => {
       entries[jsFilePath.split('/').slice(-3, -1).join('/')] = jsFilePath;
     });
     console.log('_getJsEntryList\n', entries);
@@ -19,7 +20,7 @@ utils = {
   },
   _getHtmlFileList() {
     const files = {};
-    glob.sync(this.dir('./src/views/**/**/*.html')).map((filePath) => {
+    glob.sync(this.dir(config.htmlSourceFilePath)).map((filePath) => {
       files[filePath.split('/').slice(-3, -1).join('/')] = filePath;
     });
     console.log('_getHtmlFileList\n', files);
@@ -31,7 +32,7 @@ utils = {
     for (let name in files) {
       if (!files.hasOwnProperty(name)) continue;
       const conf = {
-        filename: `common/tv-coop/${name}.html`,
+        filename: `${config.htmlDir}/${name}.html`,
         template: files[name],
         chunks: [name, 'common', 'manifest', 'vendor'],
       };
@@ -51,7 +52,7 @@ utils = {
   isProduction: () => (process.env.NODE_ENV === 'production'),
   assetDir(...arg) {
     if (!this.isProduction()) return path.posix.join(...arg);
-    return path.posix.join('tv-coop/cache/v1', ...arg)
+    return path.posix.join(config.assetDir, ...arg)
   },
   loader(loaders) {
     if (!this.isProduction()) loaders.unshift('cache-loader');

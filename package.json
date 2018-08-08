@@ -1,5 +1,5 @@
 {
-  "name": "webpack-test",
+  "name": "project-framework",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -7,11 +7,12 @@
     "build": "webpack --config build/webpack.prod.conf.js",
     "pub": "webpack --config build/webpack.pub.conf.js",
     "dev": "webpack-dev-server --config build/webpack.dev.conf.js",
-    "report": "webpack --config build/webpack.report.conf.js"
+    "report": "webpack --config build/webpack.report.conf.js",
+    "bundle-buddy": "bundle-buddy ./dist/tv-coop/cache/v1/js/*.map ./dist/tv-coop/cache/v1/js/**/*.map ./dist/tv-coop/cache/v1/js/**/**/*.map"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ehomesprite/webpack-test.git"
+    "url": "git+https://github.com/ehomesprite/project-frame.git"
   },
   "keywords": [
     "vue-cli"
@@ -19,11 +20,11 @@
   "author": "snowdrop",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ehomesprite/webpack-test/issues"
+    "url": "https://github.com/ehomesprite/project-frame/issues"
   },
-  "homepage": "https://github.com/ehomesprite/webpack-test#readme",
+  "homepage": "https://github.com/ehomesprite/project-frame#readme",
   "devDependencies": {
-    "autoprefixer": "^8.6.3",
+    "autoprefixer": "^8.6.5",
     "babel": "^6.23.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
@@ -38,6 +39,7 @@
     "cache-loader": "^1.2.2",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.11",
+    "cssnano": "^4.0.5",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-friendly-formatter": "^4.0.1",
@@ -65,7 +67,7 @@
     "vue-loader": "^15.2.4",
     "vue-resource": "^1.5.0",
     "vue-style-loader": "^4.1.0",
-    "vue-template-compiler": "^2.5.16",
+    "vue-template-compiler": "^2.5.17",
     "webpack": "^4.12.0",
     "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.0.8",

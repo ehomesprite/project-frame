@@ -5,6 +5,7 @@ process.env.NODE_ENV = 'development';
 const merge = require('webpack-merge');
 const utils = require('./utils');
 const baseConf = require('./webpack.base.conf');
+const { dev: config } = require('./config');
 
 const devConf = {
   mode: 'development',
@@ -14,11 +15,11 @@ const devConf = {
     path: utils.dir('dist'),
     publicPath: '/',
   },
-  devtool: '#module-eval-source-map',
+  devtool: config.sourceMap,
   devServer: {
     contentBase: utils.dir('dist'),
-    port: 80,
-    allowedHosts: ['your.own.url'],
+    port: config.devServerPort,
+    allowedHosts: config.devServerHosts,
     clientLogLevel: 'error',
     quiet: true,
     stats: {
@@ -32,6 +33,4 @@ const devConf = {
   },
 };
 
-const config = merge(baseConf, devConf);
-
-module.exports = config;
+module.exports = merge(baseConf, devConf);
