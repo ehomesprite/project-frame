@@ -5,16 +5,16 @@ const config = {
   common: {
     jsSourceFilePath: 'src/views/**/**/main.js',
     htmlSourceFilePath: 'src/views/**/**/index.html',
-    htmlDir: 'common/tv-coop',
-    assetDir: 'tv-coop/cache/v1',
+    htmlDir: 'page',
+    assetDir: 'assets',
   },
   dev: {
     sourceMap: '#module-eval-source-map',
     devServerPort: 8080,
-    devServerHosts: ['cms.ptqy.gitv.tv'],
+    devServerHosts: ['test.com'],
   },
   build: {
-    publicPath: '//static.ptqy.gitv.tv/',
+    publicPath: '//static.test.com/',
   },
 };
 
